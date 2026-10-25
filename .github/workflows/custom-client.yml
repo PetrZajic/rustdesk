@@ -1,0 +1,17 @@
+name: Build custom client (own server)
+
+# Builds the Flutter clients with ID server / key baked in
+# (rustdesk.xzajic.cz — see res/patch-custom-server.sh).
+# After the run finishes, download installers from the "nightly-custom" release
+# on this fork: https://github.com/PetrZajic/rustdesk/releases
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-custom-client-build:
+    uses: ./.github/workflows/flutter-build.yml
+    secrets: inherit
+    with:
+      upload-artifact: true
+      upload-tag: "nightly-custom"
